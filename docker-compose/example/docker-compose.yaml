@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  alpine-container:
+    container_name: alpine-container
+    image: alpine:latest
+  nginx-container:
+    container_name: nginx-container
+    image: nginx:latest

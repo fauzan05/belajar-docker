@@ -1,0 +1,1 @@
+docker network disconnect mongonetwork mongodb

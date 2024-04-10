@@ -1,0 +1,17 @@
+version: "3.8"
+
+networks:
+  network_example:
+    name: network_example
+    driver: bridge
+
+services:
+  mariadb-example:
+    image: mariadb:latest
+    container_name: mariadb-example
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+    networks:
+      - network_example

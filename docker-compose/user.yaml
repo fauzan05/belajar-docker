@@ -1,0 +1,15 @@
+firstName: Fauzan
+middleName: Nur
+lastName: Hidayat
+
+# membuat array yang isinya coding, reading, dan gaming
+hobbies: 
+  - Coding
+  - Reading
+  - Gaming
+
+# membuat objek yang isinya street, city, dan country
+address:
+  street: JL. Peniron
+  city: Jakarta
+  country: Indonesia

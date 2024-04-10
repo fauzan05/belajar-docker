@@ -1,0 +1,41 @@
+version: "3.8"
+
+networks:
+  network_example:
+    name: network_example
+    driver: bridge
+
+# depends on adalah ketergatungan, misalnya kontainer 1 harus dijalankan terlebih dahulu sebelum menjalankan container 2
+services:
+  alpine-example:
+    image: alpine:latest
+    container_name: alpine-example
+    networks:
+      - network_example
+    deploy:
+      resources:
+      # batas minimum konsumsi resource (opsional)
+        reservations:
+          cpus: "0.25"
+          memory: 50M
+      # batas maksimum konsumsi resource (opsional)
+        limits:
+          cpus: "0.5"
+          memory: 100M
+
+  mariadb-example:
+    image: mariadb:latest
+    container_name: mariadb-example
+    # selalu restart container jika terjadi error
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+    networks:
+      - network_example
+    # container alpine-example harus dijalankan terlebih dahulu sebelum menjalankan container mariadb-example
+    depends_on:
+      - alpine-example
+
+  

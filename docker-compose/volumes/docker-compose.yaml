@@ -1,0 +1,23 @@
+version: "3.8"
+
+volumes:
+  mariadb-data1:
+    name: mariadb-data1
+  mariadb-data2:
+    name: mariadb-data2
+
+services:
+  mariadb-port1:
+    image: mariadb:latest
+    container_name: mariadb-port1
+    ports:
+      - protocol: tcp
+        published: 3306
+        target: 3306
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+    volumes:
+      - type: volume
+        source: mariadb-data1
+        target: "/var/lib/mysql"
+        read_only: false
